@@ -8,7 +8,8 @@ from .views import (LoginAPIView,
                     UserDetalView,
                     ActivateUserAPIView,
                     PasswordRestRequestAPIView,
-                    PasswordResetDoneAPIView)
+                    PasswordResetDoneAPIView,
+                    )
 
 
 urlpatterns = [

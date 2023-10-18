@@ -7,6 +7,7 @@ import json
 from .serializer import (
     ExamResultSerializer,
     EmployeeSerializer,
+    HomePageSerializer,
     JobSerializer,
     ExamCandidateSerializer,
     ExamResultSerializer,
@@ -366,3 +367,10 @@ class ExcelUploadView(generics.GenericAPIView):
         ]
         Question.objects.bulk_create(objs)
         return Response(status=200)
+    
+# from django.template import loader
+# from django.http import HttpResponse
+# def home(request):
+#     "Home page /"
+#     template = loader.get_template('home.html')
+#     return HttpResponse(template.render())

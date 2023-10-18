@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'questions',
     'rest_framework',
     'corsheaders',
+    "home",
 ]
 AUTH_USER_MODEL = "users.Employee"
 MIDDLEWARE = [

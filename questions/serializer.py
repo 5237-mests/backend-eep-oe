@@ -90,3 +90,9 @@ class ExamCandidateSerializer(serializers.ModelSerializer):
         fields = (
                 "id", "user", "examDate", "job", "exam_taken",
         )
+
+class HomePageSerializer(serializers.ModelSerializer):
+    "Homepage serializer."
+    class Meta:
+        ""
+        pass
