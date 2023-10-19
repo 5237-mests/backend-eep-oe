@@ -13,7 +13,7 @@ SECRET_KEY = getenv("DJANGO_SECRET_KEY", '''django-insecure-c--w0i@@hm!sd2wzta!
 !_aavihk=@mnq(oo9ojzs(0+sq-cs+0''')
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
