@@ -13,7 +13,7 @@ from .views import (LoginAPIView,
 
 
 urlpatterns = [
-    path("getcsrf/", get_csrftoken),  # Get CSRFTOKEN
+    path("getcsrf/", get_csrftoken.as_view()),  # Get CSRFTOKEN
     path("login", LoginAPIView),  # Authenticate login and send sessionid
     path("logout/", logoutAPIView),  # logout session
     path("users/me/<str:username>/", UserDetalView.as_view()),

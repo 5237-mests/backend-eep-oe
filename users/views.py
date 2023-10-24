@@ -14,17 +14,45 @@ from .models import ActivationTokenGenerator
 from django.shortcuts import render
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from .utils import SendPasswordResetEmail
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import ensure_csrf_cookie
+from rest_framework.views import APIView
+from rest_framework import permissions
 
 
-def get_csrftoken(request):
-    """Get CSRF Token"""
-    resp = JsonResponse({"csrftoken": get_token(request)})
-    return resp
+# def get_csrftoken(request):
+#     """Get CSRF Token"""
+#     # resp = JsonResponse({"csrftoken": get_token(request)})
+#     return JsonResponse({"success": "ok"})
+
+@method_decorator(ensure_csrf_cookie, name='dispatch')
+class get_csrftoken(APIView):
+    permission_classes = (permissions.AllowAny,)
+    def get(self, request, format=None):
+        return JsonResponse({"success": "csrf cookie set"})
+
+
+# class LoginAPIView(generics.GenericAPIView):
+#     """Login view"""
+#     @require_POST
+#     def LoginAPIView(request):
+#         """Authenicate  login and give session id to user up on login"""
+#         data = json.loads(request.body)
+#         username = data.get("username")
+#         password = data.get("password")
+#         if username and password:
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 login(request, user)  # generate session_id
+#                 return JsonResponse(
+#                     {"status": "logged in"}, status=status.HTTP_200_OK)
+#         return JsonResponse(
+#             {"status": "invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 @require_POST
 def LoginAPIView(request):
-    """Authenicate and give session id to user up on login"""
+    """Authenicate  login and give session id to user up on login"""
     data = json.loads(request.body)
     username = data.get("username")
     password = data.get("password")
@@ -36,6 +64,9 @@ def LoginAPIView(request):
                 {"status": "logged in"}, status=status.HTTP_200_OK)
     return JsonResponse(
         {"status": "invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+
 
 
 def logoutAPIView(request):
